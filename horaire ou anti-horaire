@@ -1,0 +1,16 @@
+
+int demanderRotation(){
+int choix = 0;
+printf("choisissez le sens de la rotation : 1 pour Horaire et 2 pour Anti-Horaire :\n");
+scanf("%d", &choix);
+if(choix == 1){
+    printf(" vous avez choisi : Horaire\n");
+}
+else if (choix == 2){
+    printf(" vous avez choisi : Anti-Horaire\n");
+}
+else{
+   printf(" erreur 1\n");
+}
+return choix;
+}
