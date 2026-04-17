@@ -1,5 +1,3 @@
-#include <std.io>
-
 int pivot(){
   int pivot;
   pivot = rand()%2;
