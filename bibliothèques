@@ -1,0 +1,3 @@
+#include <std.io>
+#include <std.lib>
+#include <time.h>
