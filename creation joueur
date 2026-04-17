@@ -1,4 +1,3 @@
-#include <stdio.h>
 int constructJoueur (){
   int n;
   printf("Nombre de joueurs:\n");
