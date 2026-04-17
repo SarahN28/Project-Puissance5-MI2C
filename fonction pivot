@@ -1,0 +1,13 @@
+#include <std.io>
+
+int pivot(){
+  int pivot;
+  pivot = rand()%2;
+  if(pivot==0){
+    pivot = 3;
+  }
+  else{
+  pivot = 5;
+  }
+return pivot;
+}
