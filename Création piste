@@ -1,1 +1,8 @@
-
+int createPiste(){
+  int tab[8][6]={0};
+  tab[0][0]=4;
+  tab[0][7]=4;
+  tab[5][0]=4;
+  tab[5][7]=4;
+  return tab;
+}
