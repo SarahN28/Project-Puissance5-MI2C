@@ -1,0 +1,23 @@
+int *choixPivot(int taille, int largeur, int pivot){
+  int c, l;
+  int tab[][8];
+  if (pivot==3){
+    printf("Choisir une case de pivot compris entre les colonnes 2 et 7\n");
+    scanf("%d", &c);
+    if (c<2 || c>7) {
+      printf("erreur colonne\n");
+      return 0;
+     }
+    scanf("%c", &l);
+    if (c >= 'a' && c <= 'z'){
+      c = (c - 'a' + 'A'); 
+     }
+    else if (c >= 'A' && c <= 'Z'){
+      c=c;
+     }
+    else {
+      printf("erreur ligne\n");
+      return 0;
+     }
+  return tab;
+ }
