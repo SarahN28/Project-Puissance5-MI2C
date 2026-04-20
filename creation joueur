@@ -1,7 +1,14 @@
 int constructJoueur (){
-  int n;
+  int n, x;
   printf("Nombre de joueurs:\n");
   printf("0 : 2joueurs\n1 : 3joueurs\n);
   scanf("%d"; &n);
+  if (n==0 || n==1){
+    printf("Mode : %d joueurs\n", n+2);
+   }
+  else {
+    printf("Erreur 0\n");
+    constructJoueur;
+  }
   return n; 
  }
