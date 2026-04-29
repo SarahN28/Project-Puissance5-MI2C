@@ -1,23 +1,27 @@
-int *choixPivot(int taille, int largeur, int pivot){
-  int c, l;
-  int tab[][8];
-  if (pivot==3){
-    printf("Choisir une case de pivot compris entre les colonnes 2 et 7\n");
-    scanf("%d", &c);
-    if (c<2 || c>7) {
-      printf("erreur colonne\n");
-      return 0;
+void *choixPivot(int p, int tab[][6], int taille){
+  int i=0, j=0;
+  int *cp;
+  if (p==3){
+    while (i<2 || i>7){
+      printf("Choisir la colonne du pivot\n");
+      scanf("%d", &i);
      }
-    scanf("%c", &l);
-    if (c >= 'a' && c <= 'z'){
-      c = (c - 'a' + 'A'); 
+    while (j<2 || j>5) {
+      printf("Choisir la ligne du pivot\n");
+      scanf("%d", &j);
      }
-    else if (c >= 'A' && c <= 'Z'){
-      c=c;
+   }
+  if (p==5){
+    while (i<3 || i>6){
+      printf("Choisir la colonne du pivot\n");
+      scanf("%d", &i);
      }
-    else {
-      printf("erreur ligne\n");
-      return 0;
+    while (j<3 || j>4) {
+      printf("Choisir la ligne du pivot\n");
+      scanf("%d", &j);
      }
-  return tab;
+   }
+  i--;
+  j--;
+  cp=tab[i][j];
  }
