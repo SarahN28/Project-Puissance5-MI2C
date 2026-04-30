@@ -11,6 +11,7 @@ else if (choix == 2){
 }
 else{
    printf(" erreur 1\n");
+   return 0;
 }
 return choix;
 }
