@@ -1,0 +1,15 @@
+void deplacement_bas(tab[a][b]){
+  if (tab[a][b]==1){
+    if (tab[a][b-1]==0){
+      tab[a][b]==0;
+      tab[a][b-1]==1;
+    }
+  }
+
+void gravite{
+  for (i=0; i<8; i++){
+      for (j=1; j<6; j++){
+        deplacement_bas(tab[i][j]);
+      }
+  }
+}
