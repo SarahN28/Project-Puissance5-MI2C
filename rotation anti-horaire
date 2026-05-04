@@ -1,4 +1,4 @@
-void rotationAntiHoraire(int tab[6][8], int pivot, int ligne, int colonne){
+void rotationAntiHoraire(int tab[6][8], int pivot, pivot c){
 
     int tab2[5][5];
     int i;
@@ -7,14 +7,14 @@ void rotationAntiHoraire(int tab[6][8], int pivot, int ligne, int colonne){
     // on copie zone
     for(i = 0; i < pivot; i++){
         for(j = 0; j < pivot; j++){
-           tab2[i][j] = tab[ligne+i][colonne+j];
+           tab2[i][j] = tab[c.ligne+i][c.colonne+j];
         }
     }
 
     // rotation anti-horaire
     for(i = 0; i < pivot; i++){
         for(j = 0; j < pivot; j++){
-            tab[ligne+i][colonne+j] = tab2[pivot-1-j][i];
+            tab[c.ligne+i][c.colonne+j] = tab2[pivot-1-j][i];
         }
     }
 }
