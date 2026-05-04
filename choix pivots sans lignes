@@ -1,6 +1,10 @@
-void *choixPivot(int p, int tab[][6], int taille){
+typedef struct {
+  int ligne;
+  int colonne;
+} pivot;
+pivot choixPivot(int p, int tab[][6], int taille){
   int i=0, j=0;
-  int *cp;
+  pivot c;
   if (p==3){
     while (i<2 || i>7){
       printf("Choisir la colonne du pivot\n");
@@ -23,5 +27,7 @@ void *choixPivot(int p, int tab[][6], int taille){
    }
   i--;
   j--;
-  cp=tab[i][j];
+  c.ligne = i;
+  c.colonne = j;
+  return c;
  }
