@@ -14,7 +14,7 @@ void rotationHoraire(int tab[6][8], int pivot, pivot c){
  // rotation horaire
   for(i = 0; i < pivot; i++){
     for(j = 0; j < pivot; j++){
-       tab[c.ligne+i][c.colonne+j] = tab2[j][pivot-1-i];
+       tab[c.ligne-m+i][c.colonne-m+j] = tab2[j][pivot-1-i];
       }
    }
 }
