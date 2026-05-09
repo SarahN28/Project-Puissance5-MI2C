@@ -1,4 +1,4 @@
-void rotationHoraire(int tab[6][8], int pivot, pivot c){
+void rotationHoraire(int tab[8][6], int pivot, pivot c){
  
     int tab2[pivot][pivot];
     int i;
