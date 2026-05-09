@@ -10,8 +10,10 @@ void deplacement_bas(int tab[][6], int i, int j){
 
 void gravite{
   for (int i=0; i<8; i++){
+    for (int k=0; k<6; k++){
       for (int j=5; j>0; j--){
         deplacement_bas(tab[][8], i, j);
       }
+    }
   }
 }
