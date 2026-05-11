@@ -19,7 +19,7 @@ void deplacement_bas(int tab[][8], int i, int nbJ){
     i=i-1;
  }
 
-void gravite(int tab[][6], int nbJ){
+void gravite(int tab[][8], int nbJ){
   for (int i=0; i<8; i++){
     deplacement_bas(tab[][8], i, nbJ);
    }
