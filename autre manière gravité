@@ -1,7 +1,7 @@
 void deplacement_bas(int tab[][8], int i, int nbJ){
-  int k, tmp, i;
+  int k, tmp, j;
   k=-1;
-  i=5;
+  j=5;
   while(i>=0){
     if (tab[i][j]=0 && i>k){
       k=i;
@@ -13,10 +13,10 @@ void deplacement_bas(int tab[][8], int i, int nbJ){
       tmp = tab[i][j];
       tab[i][j] = tab[i][k];
       tab[i][k] = tmp;
-      i=k;
+      j=k;
       k=-1;
     }
-    i=i-1;
+    j=j-1;
  }
 
 void gravite(int tab[][8], int nbJ){
