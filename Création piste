@@ -1,5 +1,5 @@
 int createPiste(){
-  int tab[8][6]={0};
+  int tab[6][8]={0};
   tab[0][0]=1;                //caré sur L1 C1
   tab[0][7]=1;                //caré sur L1 C8
   tab[5][0]=1;                //caré sur L6 C1
