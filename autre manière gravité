@@ -1,26 +1,26 @@
 void deplacement_bas(int tab[][8], int j, int nbJ){
-  int k, tmp, i;
-  k=-1;
+  int k, tmp, i;             //k c'est la première case avec un espace disponible
+  k=-1;                      //on initialise k à -1 pour éviter les erreurs
   i=5;
-  while(j>=0){
-    if (tab[i][j]=0 && j>k){
-      k=i;
+  while(i>=0){                     //i s'arrête quand i=-1, le parcours de la colonne est terminé
+    if (tab[i][j]=0 && i>k){       //si case vide et i supérieur à l'indice de la case vide (n'arrive que au départ ou si il y a un block)
+      k = i;                       //k prend la valeur de la dernière case
      }
-    else if (tab[i][j]=1){
-      k = -1;
+    else if (tab[i][j]=1){         //si il y a un block
+      k = -1;                      //réinitialisation de la case dispo
     }
-    else if (k>-1 && tab[i][j]>1 && tab[i][j]<nbJ+2){
-      tmp = tab[i][j];
+    else if (k>-1 && tab[i][j]>1 && tab[i][j]<nbJ+2){             //si il y a une case dispo et si c'est un joueur
+      tmp = tab[i][j];                                            //échange des cases
       tab[i][j] = tab[k][j];
       tab[k][j] = tmp;
-      i=k;
-      k=-1;
+      i=k;                                                        //on repart de la case changée
+      k=-1;                                                       //réinitialisation de la case dispo
     }
-    i=i-1;
+    i=i-1;                                                        //passage à la case du dessus
  }
 
 void gravite(int tab[][8], int nbJ){
-  for (int j=0; j<8; j++){
+  for (int j=0; j<8; j++){                                        //répéter la fonction pour chaque colonne
     deplacement_bas(tab[][8], i, nbJ);
    }
  }
