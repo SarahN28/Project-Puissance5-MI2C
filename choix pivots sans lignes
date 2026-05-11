@@ -7,21 +7,21 @@ pivot choixPivot(int p, int tab[][8], int taille){
   pivot c;
   if (p==3){
     while (i<2 || i>5){
-      printf("Choisir la colonne du pivot\n");
+      printf("Choisir la ligne du pivot\n");
       scanf("%d", &i);
      }
     while (j<2 || j>7) {
-      printf("Choisir la ligne du pivot\n");
+      printf("Choisir la colonne du pivot\n");
       scanf("%d", &j);
      }
    }
   if (p==5){
     while (i<3 || i>4){
-      printf("Choisir la colonne du pivot\n");
+      printf("Choisir la ligne du pivot\n");
       scanf("%d", &i);
      }
     while (j<3 || j>6) {
-      printf("Choisir la ligne du pivot\n");
+      printf("Choisir la colonne du pivot\n");
       scanf("%d", &j);
      }
    }
