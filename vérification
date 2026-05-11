@@ -1,7 +1,9 @@
 int verification(int tab[6][8]){
   int i;
   int j;
+
 //verification horizontale
+
   for(i = 0; i < 6; i++){     // i = numero de ligne //il y a 6 lignes : 0 à 5
     for(j = 0; j < 4; j++){   // j = colonne de depart //on s'arrête à 3 car on regarde j, j+1, j+2, j+3, j+4
       //on ignore les cases vides (0) et les blocs (1)
@@ -13,5 +15,22 @@ int verification(int tab[6][8]){
       }
     }
   }
+
 //verification verticale
-    for(i 
+
+    for(i = 0; i < 2; i++){   // i = ligne de départ
+       for(j = 0; j < 4; j++){   // j = colonne de départ
+         //on ignore les cases vides (0) et les blocs (1)
+          if(tab[i][j] != 0 && tab[i][j] != 1){
+             //on compare 5 cases en diagonale droite
+              if(tab[i][j] == tab[i+1][j+1] && tab[i][j] == tab[i+2][j+2] && tab[i][j] == tab[i+3][j+3] && tab[i][j] == tab[i+4][j+4]){
+                return tab[i][j];   // victoire du joueur
+              }
+          }
+       }
+    }
+
+//verification diagonale gauche
+
+
+
