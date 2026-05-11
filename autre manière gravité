@@ -1,4 +1,4 @@
-void deplacement_bas(int tab[][6], int i, int nbJ){
+void deplacement_bas(int tab[][8], int i, int nbJ){
   int k, tmp, i;
   k=-1;
   i=5;
