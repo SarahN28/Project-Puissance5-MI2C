@@ -1,4 +1,4 @@
-void printGame(int tab[][6]){
+void printGame(int tab[6][8]){
   for (int j=0; j<6; j++){
     for (int i=0; i<8; i++){
       if(tab[i][j]==0){
