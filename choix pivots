@@ -1,10 +1,10 @@
 typedef struct {
   int ligne;
   int colonne;
-} pivot;
-pivot choixPivot(int p, int tab[][8], int taille){
+} Pivot;
+Pivot choixPivot(int p, int tab[][8], int taille){
   int i=0, j=0;
-  pivot c;
+  Pivot c;
   if (p==3){
     while (i<2 || i>5){
       printf("Choisir la ligne du pivot\n");
@@ -25,10 +25,10 @@ pivot choixPivot(int p, int tab[][8], int taille){
       scanf("%d", &j);
      }
    }
-  printf("Pivot choisi : L%d C%d\n", c.ligne, c.colonne);
   i--;
   j--;
   c.ligne = i;
   c.colonne = j;
+  printf("Pivot choisi : L%d C%d\n", c.ligne+1, c.colonne+1);
   return c;
  }
