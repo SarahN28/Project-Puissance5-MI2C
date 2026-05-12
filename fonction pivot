@@ -1,11 +1,12 @@
 int pivot(){
-  int pivot;
-  pivot = rand()%2;
-  if(pivot==0){
-    pivot = 3;
+  int rp;                         //rp : nom du diamètre du pivot
+  rp = rand()%2;
+  if(rp==0){
+    rp = 3;                       
   }
   else{
-  pivot = 5;
+  rp = 5;
   }
-return pivot;
+
+return rp;
 }
