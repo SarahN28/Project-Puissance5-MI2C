@@ -18,7 +18,7 @@ int verification(int tab[6][8]){
 
 //verification verticale
 
-    for(i = 0; i < ; i++){   // i = ligne de départ
+    for(i = 0; i < 2; i++){   // i = ligne de départ
        for(j = 0; j < 4; j++){   // j = colonne de départ
          //on ignore les cases vides (0) et les blocs (1)
           if(tab[i][j] != 0 && tab[i][j] != 1){
