@@ -25,6 +25,7 @@ pivot choixPivot(int p, int tab[][8], int taille){
       scanf("%d", &j);
      }
    }
+  printf("Pivot choisi : L%d C%d\n", c.ligne, c.colonne);
   i--;
   j--;
   c.ligne = i;
