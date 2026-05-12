@@ -1,3 +1,3 @@
-#include <std.io>
+#include <stdio.h>
 #include <std.lib>
 #include <time.h>
