@@ -1,16 +1,16 @@
-void placement(int k){   //numéro du joueur, penser à changer les cases qui bougent pas de 1 à 4!!!
-  int colonne;
+void placement(int k){  //numéro du joueur, penser à changer les cases qui bougent pas de 1 à 4!!!
+  int colonne = 87;
   int vide = 56;
-  do{
+  while (vide!=0){
     printf ("Choisir un numéro de colonne.");  //demander à joueur colonne pour placer jeton
-      scanf ("%d", &colonne);
-      if (tab[0][colonne])!=0){  //vérifier que tab [0][j] vide
-        printf ("Cette case n'est pas disponible. Choisir une autre case.");  //si non afficher erreur et recommencer
-        vide = 1;
-      }
-      else{
-        tab[0][colonne] = k;  //si oui placer jeton
-        vide = 0;
-      }
-  } while (vide!=0);
+    scanf ("%d", &colonne);
+    if (tab[0][colonne])!=0){  //vérifier que tab [0][j] vide
+     printf ("Cette case n'est pas disponible. Choisir une autre case.");  //si non afficher erreur et recommencer
+     vide = 1;
+    }
+    else{
+     tab[0][colonne] = k;  //si oui placer jeton
+     vide = 0;
+     }
+  }
 }
