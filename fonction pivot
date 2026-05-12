@@ -1,12 +1,12 @@
 int pivot(){
   int rp;                         //rp : nom du diamètre du pivot
   rp = rand()%2;
-  if(rp==0){
+  if(rp==0){                      //diamètre du pivot = 3 cases
     rp = 3;                       
   }
-  else{
+  else{                          //diamètre du pivot = 5 cases
   rp = 5;
   }
-
+printf("Le pivot a un diamètre de %d cases\n", rp);
 return rp;
 }
