@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+typedef struct {
+  int ligne;
+  int colonne;
+} Pivot;
+Pivot choixPivot(int p, int tab[6][8]){
+  int i=0, j=0;
+  Pivot c;
+  if (p==3){
+    while (i<2 || i>5){
+      printf("Choisir la ligne du pivot\n");
+      scanf("%d", &i);
+     }
+    while (j<2 || j>7) {
+      printf("Choisir la colonne du pivot\n");
+      scanf("%d", &j);
+     }
+   }
+  if (p==5){
+    while (i<3 || i>4){
+      printf("Choisir la ligne du pivot\n");
+      scanf("%d", &i);
+     }
+    while (j<3 || j>6) {
+      printf("Choisir la colonne du pivot\n");
+      scanf("%d", &j);
+     }
+   }
+  i--;
+  j--;
+  c.ligne = i;
+  c.colonne = j;
+  printf("Pivot choisi : L%d C%d\n", c.ligne+1, c.colonne+1);
+  return c;
+ }
+int pivot(){
+  int rp;                         //rp : nom du diamètre du pivot
+  rp = rand()%2;
+  if(rp==0){                      //diamètre du pivot = 3 cases
+    rp = 3;                       
+  }
+  else{                          //diamètre du pivot = 5 cases
+  rp = 5;
+  }
+printf("Le pivot a un diamètre de %d cases\n", rp);
+return rp;
+}
+int main(){
+  int rp = 88;
+  Pivot c;
+  int tab[6][8]={0};
+  srand(time(NULL));
+  rp = pivot();
+  c = choixPivot(rp, tab);
+  return 0;
+ }
