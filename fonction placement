@@ -1,7 +1,11 @@
 void placement(){
   int colonne;
+  int vide;
   printf ("Choisir un numéro de colonne.");  //demander à joueur colonne pour placer jeton
   scanf ("%d", &colonne);
   if (tab[0][colonne])!==0){  //vérifier que tab [0][j] vide
-    printf ("Cette case n'est pas disponible. Choisir une autre case.  //si non afficher erreur et recommencer
-  //si oui placer jeton
+    printf ("Cette case n'est pas disponible. Choisir une autre case.");  //si non afficher erreur et recommencer
+    vide = 1;
+  }
+  else{
+    tab[0][colonne] = //si oui placer jeton
