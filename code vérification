@@ -1,0 +1,27 @@
+nt verification(int tab[6][8]){
+  int i;
+  int j;
+  int valeur;
+
+// horizontale
+for(i = 0; i < 6; i++){
+  for(j = 0; j < 8 ; j++){
+    valeur = tab[i][j];
+//on verifie que la case contient un pion
+    if(valeur>1){
+//on verifie qu'il reste 4 cases à droite
+      if(j+4 < 8){
+//on compare les 5 cases
+        if(tab[i][j+1] == valeur && tab[i][j+2] == valeur && tab[i][j+3] == valeur && tab[i][j+4] == valeur){
+           return 1;
+        }
+      }
+    }
+  }
+}
+
+//verticale 
+for(i = 0; i < 6; i++){
+  for(j = 0; j < 8 ; j++){
+    valeur = tab[i][j];
+//on verifie qu'il reste 4 cases en bas
