@@ -1,4 +1,3 @@
-
 int demanderRotation(){
 int choix = 0;
 printf("choisissez le sens de la rotation : 1 pour Horaire et 2 pour Anti-Horaire :\n");
