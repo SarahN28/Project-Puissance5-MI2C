@@ -1,4 +1,4 @@
-int pivot(){
+int taillePivot(){
   int rp;                         //rp : nom du diamètre du pivot
   rp = rand()%2;
   if(rp==0){                      //diamètre du pivot = 3 cases
