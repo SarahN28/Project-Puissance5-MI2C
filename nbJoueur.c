@@ -1,4 +1,4 @@
-int constructJoueur(){
+int nbJoueur(){
   int n = 0;
   printf("Nombre de joueurs:\n");
   printf("2 : 2joueurs       3 : 3joueurs\n");
