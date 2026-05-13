@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-int pivot(){
+int taillePivot(){
   int rp;                         //rp : nom du diamètre du pivot
   rp = rand()%2;
   if(rp==0){                      //diamètre du pivot = 3 cases
@@ -17,6 +17,6 @@ int main(){
   int rp = 88;
   int tab[6][8]={0};
   srand(time(NULL));
-  rp = pivot();
+  rp = taillePivot();
   return 0;
  }
