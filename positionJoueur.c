@@ -43,14 +43,13 @@ void gravite(int tab[][8], int nbJ){
    }
  }
 Pivot placePiece(int tab[][8], Pivot place){
-  place.ligne = 99;
   for (int i=0; i<6; i++){
     if (tab[i][place.colonne]!=0 && tab[i][place.colonne]!=4){
       place.ligne=i;
       return place;
     }
   }
-  if (place.ligne==99){
+  if (place.ligne>5){
     printf("erreur 44\n");
     exit();
   }
