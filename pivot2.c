@@ -1,31 +1,12 @@
-Pivot choixPivot(int tab[][8], int taille, Pivot place){
-  int i=0, j=0;
-  Pivot c;
-  int m;
-  if (p==3){
-    while (i<2 || i>5){
-      printf("Choisir la ligne du pivot\n");
-      scanf("%d", &i);
-     }
-    while (j<2 || j>7) {
-      printf("Choisir la colonne du pivot\n");
-      scanf("%d", &j);
-     }
-   }
-  if (p==5){
-    while (i<3 || i>4){
-      printf("Choisir la ligne du pivot\n");
-      scanf("%d", &i);
-     }
-    while (j<3 || j>6) {
-      printf("Choisir la colonne du pivot\n");
-      scanf("%d", &j);
-     }
-   }
-  i--;
-  j--;
-  c.ligne = i;
-  c.colonne = j;
-  printf("Pivot choisi : L%d C%d\n", c.ligne+1, c.colonne+1);
-  return c;
+ // insertion  pion d un joueur nbJ en colonne c numcol
+int deplacement_bas(int tab[][numCol], int nbJ, int numcol){
+  int i;
+  i=0;
+  while(tab[i][numcol]==0 && i<6){
+    i = i+1;
+  }
+  // i contient la première ligne non vide (arrêt car !=0)
+  if (i==0) { return(-1);} // la colonne est pleine : insertion du jeton impossible
+  tab[i-1][numcol] = nbJ;
+  return(i-1);
  }
