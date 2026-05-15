@@ -12,7 +12,7 @@
 6. [Auteurs](#auteurs)
 
 ## Description du projet 
-
+Ce projet consiste à créer un jeu 
 
 
 
