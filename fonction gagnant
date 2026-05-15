@@ -2,13 +2,13 @@ int GAGNANT(int tab[6][8]){
    int joueur;
    joueur = verification(tab);
 
-   if(joueur == 1){
+   if(joueur == 2){
       printf("Le joueur 1 a gagne\n");
    }
-   else if(joueur == 2){
+   else if(joueur == 3){
       printf("Le joueur 2 a gagne\n");
    }
-   else if(joueur == 3){
+   else if(joueur == 4){
         printf("Le joueur 3 a gagne\n");
    }
    else{
