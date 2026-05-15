@@ -1,6 +1,7 @@
 Pivot choixPivot(int tab[][8], int taille, Pivot place){
   int i=0, j=0;
   Pivot c;
+  int m;
   if (p==3){
     while (i<2 || i>5){
       printf("Choisir la ligne du pivot\n");
