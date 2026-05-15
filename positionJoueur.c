@@ -42,12 +42,16 @@ void gravite(int tab[][8], int nbJ){
     deplacement_bas(tab[][8], i, nbJ);
    }
  }
-void placePiece(int tab[][8], Pivot place){
+Pivot placePiece(int tab[][8], Pivot place){
   place.ligne = 99;
   for (int i=0; i<6; i++){
     if (tab[i][place.colonne]!=0 && tab[i][place.colonne]!=4){
       place.ligne=i;
-      break;
+      return place;
     }
+  }
+  if (place.ligne==99){
+    printf("erreur 44\n");
+    exit();
   }
 }
