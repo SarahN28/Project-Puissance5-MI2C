@@ -1,21 +1,27 @@
-void rotationAntiHoraire(int tab[6][8], int pivot, Pivot c){
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
+void rotationAntiHoraire(int tab[6][8], int pivot, Pivot c){
     int tab2[pivot][pivot];
     int i;
     int j;
     int m = pivot/2; 
-
     // on copie zone
     for(i = 0; i < pivot; i++){
         for(j = 0; j < pivot; j++){
            tab2[i][j] = tab[c.ligne-m+i][c.colonne-m+j];
         }
     }
-
     // rotation anti-horaire
     for(i = 0; i < pivot; i++){
         for(j = 0; j < pivot; j++){
             tab[c.ligne-m+i][c.colonne-m+j] = tab2[pivot-1-j][i];
         }
     }
+}
+
+int main(){
+    
+    return 0;
 }
