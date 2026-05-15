@@ -2,7 +2,7 @@ typedef struct {
   int ligne;
   int colonne;
 } Pivot;
-Pivot choixPivot(int p, int tab[][8], int taille){
+Pivot choixPivot(int tab[][8], int taille){
   int i=0, j=0;
   Pivot c;
   if (p==3){
