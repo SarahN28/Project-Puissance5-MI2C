@@ -4,6 +4,7 @@
 
 const int NBLIG = 6;
 const int NBCOL = 8;
+
 typedef struct {
   int ligne;
   int colonne;
@@ -18,7 +19,7 @@ typedef struct {
 // les données du jeu : sont mises dans une structure pour pourvoir sauvegarder dans un fichier binaire, et les récupérer facilement
 typedef struct {
   int nbJoueur;
-  int numeroJoueur;
+  int numeroJoueur;                  //prochain joueur à jouer
   defJoueur jo[3];
   int grille[6][8];
 } jeu;
@@ -32,12 +33,13 @@ int constructJoueur (defJoueur joueur[3]){
   do{
      printf("Entrez le nombre de joueurs : 2 ou 3, pour sortir : tapez 99 \n");
      scanf("%d", &n);
-     carlu = getchar();
+     carlu = getchar();                                       //verif que l'utilisateur n'a mis qu'un nombre
      while (carlu !='\n') {
       carlu = getchar();
      }
      if (n!=2 && n!=3 && n!=99) {
-       printf("Erreur :  le nombre de joueur est incorrect\n");}
+       printf("Erreur :  le nombre de joueur est incorrect\n");
+     }
   } while (n!=2 && n!=3 && n!=99);
   if (n==99) {
    return(n);
