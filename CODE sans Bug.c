@@ -42,7 +42,7 @@ int constructJoueur (defJoueur joueur[3]){
      }
   } while (n!=2 && n!=3 && n!=99);
   if (n==99) {
-   return(n);
+   return (n);
   }
   for(int i=0; i<n; i++) {
    joueur[i].numJoueur = i+1;
