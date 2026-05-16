@@ -81,7 +81,6 @@ return piv;
 }
 
 
-
  // initialisation de la grille de jeu
  void createPiste(int tab[NBLIG][NBCOL], int nbl, int nbc){
   for (int i=0; i<nbl; i++){
@@ -144,23 +143,25 @@ void printGame(jeu nvjeu, int nbl, int nbc){
      }
   } while (n<1 || (n>8 && n!=99));
   if (n!=99) {
-    return(n-1);
+    return (n-1);
   }
   else {
-    return(n);
+    return (n);
   } 
  }
 
  // insertion  valeur  en colonne c numcol
- // vaut 2 si premier joueur, 3 si second joueur 
-int deplacement_bas(int tab[NBLIG][NBCOL], int nbJ, int numcol){
+ // vaut 2 si premier joueur, 3 si second joueur, 4 si troisieme joueur
+int deplacement_bas(int tab[NBLIG][NBCOL], int nbJ, int numcol){          //numcol = n de fonction precedente
   int i;
   i=0;
-  while(tab[i][numcol]==0 && i<6){
+  while (tab[i][numcol]==0 && i<6){
     i = i+1;
   }
   // i contient la première ligne non vide (arrêt car !=0)
-  if (i==0) { return(-1);} // la colonne est pleine : insertion du jeton impossible
+  if (i==0) {
+    return (-1);
+  } // la colonne est pleine : insertion du jeton impossible
   tab[i-1][numcol] = nbJ;
   return(i-1);
  }
@@ -168,7 +169,7 @@ int deplacement_bas(int tab[NBLIG][NBCOL], int nbJ, int numcol){
  // selection du pivot : le carré doit contenir le dernier jeton mis, et doit appartenir à la grille
  // la ligne du pivot soit être à n case de celle du jeton, n étant le nb de case pivotant autour du pivot (nbpivot/2), le carré doit rester dans la grille
  // la colonne du pivot soit être à n case de celle du jeton, n étant le nb de case pivotant autour du pivot (nbpivot/2), le carré doit rester dans la grille 
-pivot choixPivot(int n, int lig, int col) {
+pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplacement et col = numcol = n de saisiecolonne
   int i=0, j=0;
   int ligmin, ligmax, colmin, colmax;
   pivot c;
@@ -176,8 +177,7 @@ pivot choixPivot(int n, int lig, int col) {
   
   printf("Votre nouveau jeton est en l%d, c%d \n", lig+1, col+1);
   
-  
-  // le carré de rotation doit contenir le pion (en lig, col)
+  // le carré de rotation doit contenir le pion
   ligmin = lig-n;
   ligmax = lig+n;
   colmin = col-n;
@@ -233,7 +233,7 @@ pivot choixPivot(int n, int lig, int col) {
  
  
  // vérification nv jeton (en ligne, colonne : lig, col) est bien dans la zone de pivot
- int verifpivot(pivot p, int nbcase, int lig, int col) {
+ int verifpivot(pivot p, int nbcase, int lig, int col) {                     //????????????????
  if (lig > (p.ligne + nbcase) || lig < (p.ligne - nbcase)) {
   return(1);
  }
@@ -250,21 +250,19 @@ char carlu;
 
 carlu = ' ';
 while(choix!=1 && choix !=2) {
-  printf("choisissez le sens de la rotation : 1 pour Horaire et 2 pour Anti-Horaire :\n");
+  printf("Choisissez le sens de la rotation : 1 pour Horaire et 2 pour Anti-Horaire :\n");
   scanf("%d", &choix);
-  carlu = getchar();
-  // pour supprimer les caractères restants au cas où...
+  carlu = getchar();                                      // pour supprimer les caractères restants au cas où...
   while (carlu != '\n') {
     carlu = getchar();
   }
 }
 
-
 if(choix == 1){
-    printf(" vous avez choisi : Horaire\n");
+    printf(" Vous avez choisi : Horaire\n");
 }
 else {
-    printf(" vous avez choisi : Anti-Horaire\n");
+    printf(" Vous avez choisi : Anti-Horaire\n");
 }
 return choix;
 }
@@ -339,7 +337,7 @@ void gravitePivot(int tab[NBLIG][NBCOL], pivot pi, int nbc) {
 int t[NBCOL];
 int k;
 int i, j ;
-for(j=pi.colonne-nbc; j<=pi.colonne+nbc;j++){
+for(j=pi.colonne-nbc; j<=pi.colonne+nbc; j++){
   for(k=0; k<=5; k++) {
     t[k]=0;
   }
@@ -372,7 +370,7 @@ int ret = 1;
 for (i=0; i<NBLIG; i++) {
   for(j=0; j<=NBCOL-5; j++) {
     if (tab[i][j]==tab[i][j+1] && tab[i][j]==tab[i][j+2] && tab[i][j]==tab[i][j+3] && tab[i][j]==tab[i][j+4] && tab[i][j] != 0) {
-      k=tab[i][j] - 2;
+      k = tab[i][j] - 2;
       resJ[k].aGagner = 1;
       printf("Gagnant en ligne %d \n", i+1);
       ret = 0;
@@ -404,7 +402,6 @@ for(i=4; i<6; i++) {
 }
 
 // verif gagnant en diagonale inversée
-
 for(i=4; i<6; i++) {
   for(j=4; j<8; j++) {
     if (tab[i][j]==tab[i-1][j-1] && tab[i][j]==tab[i-2][j-2] && tab[i][j]==tab[i-3][j-3] && tab[i][j]==tab[i-4][j-4] && tab[i][j]!=0){
@@ -416,7 +413,6 @@ for(i=4; i<6; i++) {
   }
 }
 
-
 // verif si partie NULLE
 if (ret==1) {
  ret=2;
@@ -426,10 +422,10 @@ if (ret==1) {
   }
  }
  }
-return(ret);
+return (ret);
 }
 
- 
+
 int sauvJeux(jeu sjeu, FILE *fic){
  int ret=0;
  fic=fopen("SauvP5.txt", "wb+") ;
