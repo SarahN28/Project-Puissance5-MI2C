@@ -63,7 +63,7 @@ int constructJoueur (defJoueur joueur[3]){
    }
    joueur[i].nomJoueur[10] = '\0';
   }
-  return(n);
+  return (n);
  }
 
 // sélection du pivot
@@ -118,14 +118,13 @@ void printGame(jeu nvjeu, int nbl, int nbc){
       else if(nvjeu.grille[i][j]==4){
         printf("| 3");
        }
-       
      }
     printf("| \n");
-    printf("  ");
+    printf("  ");                                           //???????????????????????????????????????????
     for (k = 0; k<nbc; k++) {
     printf("---");
     }  
-    printf("-\n");
+    printf("-\n");                                          //???????????????????????????????????????????
    }
  }
  
@@ -141,14 +140,16 @@ void printGame(jeu nvjeu, int nbl, int nbc){
        carlu = getchar();
      }
      if (n<1 || (n>8 && n!=99)) {
-       printf("Erreur :  le numéro de colonne est incorrecte\n");}
+       printf("Erreur :  le numéro de colonne est incorrecte\n");
+     }
   } while (n<1 || (n>8 && n!=99));
   if (n!=99) {
-    return(n-1);}
-  else {return(n);
+    return(n-1);
+  }
+  else {
+    return(n);
   } 
  }
- 
 
  // insertion  valeur  en colonne c numcol
  // vaut 2 si premier joueur, 3 si second joueur 
