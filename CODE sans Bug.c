@@ -106,24 +106,24 @@ void printGame(jeu nvjeu, int nbl, int nbc){
         printf("|  ");
        }
       else if(nvjeu.grille[i][j]==1){
-        printf("|##");
+        printf("|###");
        }
       else if(nvjeu.grille[i][j]==2){
-        printf("| 1");
+        printf("| ¤ ");
        }
       else if(nvjeu.grille[i][j]==3){
-        printf("| 2");
+        printf("| & ");
        }
       else if(nvjeu.grille[i][j]==4){
-        printf("| 3");
+        printf("| 3 ");
        }
      }
     printf("| \n");
-    printf("  ");                                           //???????????????????????????????????????????
+    printf("  ");
     for (k = 0; k<nbc; k++) {
     printf("---");
     }  
-    printf("-\n");                                          //???????????????????????????????????????????
+    printf("-\n");
    }
  }
  
@@ -231,18 +231,7 @@ pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplac
   return c;
  }
  
-//A SUPPRIMER 
- // vérification nv jeton (en ligne, colonne : lig, col) est bien dans la zone de pivot
- int verifpivot(pivot p, int nbcase, int lig, int col) {                     //????????????????
- if (lig > (p.ligne + nbcase) || lig < (p.ligne - nbcase)) {
-  return(1);
- }
- if (col > (p.colonne + nbcase) || col < (p.colonne - nbcase)) {
-  return(1);
- }
- return(0);
- }
-// 
+
 // Type de rotation 
 int demanderRotation(){
 int choix = 0;
