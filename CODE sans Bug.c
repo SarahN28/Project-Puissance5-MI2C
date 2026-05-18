@@ -115,7 +115,7 @@ void printGame(jeu nvjeu, int nbl, int nbc){
         printf("| & ");
        }
       else if(nvjeu.grille[i][j]==4){
-        printf("| 3 ");
+        printf("| ¥ ");
        }
      }
     printf("| \n");
