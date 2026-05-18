@@ -231,7 +231,7 @@ pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplac
   return c;
  }
  
- 
+//A SUPPRIMER 
  // vérification nv jeton (en ligne, colonne : lig, col) est bien dans la zone de pivot
  int verifpivot(pivot p, int nbcase, int lig, int col) {                     //????????????????
  if (lig > (p.ligne + nbcase) || lig < (p.ligne - nbcase)) {
@@ -242,7 +242,7 @@ pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplac
  }
  return(0);
  }
- 
+// 
 // Type de rotation 
 int demanderRotation(){
 int choix = 0;
