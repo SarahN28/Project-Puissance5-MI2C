@@ -1,3 +1,9 @@
+#include <bibli.h>
+#include <constante.h>
+#include <struct.h>
+#include <fonction.h>
+
+
 int main () {
  int nvlig, nbpivot, nbcase;
  int numerocol = 0;
