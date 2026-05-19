@@ -187,7 +187,7 @@ pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplac
     colmax = 7-n;
   }
   while (j<(colmin+1) || (j>(colmax+1) && j!=99)){                                         // la ligne affichée est à +1 de l'indice
-    if( (j<(colmin+1) && j!=0) || (j>(colmax+1) && j!=99) {
+    if((j<(colmin+1) && j!=0) || (j>(colmax+1) && j!=99)) {
       printf("erreur de saisie : \n");
     }
     printf("Choisir la colonne du pivot : comprise entre %d et %d ou 99 pour sortir du jeu\n", colmin+1, colmax+1);
@@ -195,20 +195,20 @@ pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplac
     carlu = getchar();
     while (carlu != '\n') {
       carlu = getchar();
-     }
-   }   
+    }
+  }   
   if (j!=99) {
     while (i<(ligmin+1) || i>(ligmax+1)) {
-      if( (i<(ligmin+1) && i!=0) || (i>(ligmax+1)) {
+      if((i<(ligmin+1) && i!=0) || (i>(ligmax+1))) {
       printf("erreur de saisie : \n");
-    }
+      }
       printf("Choisir la ligne du pivot : comprise entre %d et %d \n", ligmin+1, ligmax+1);
       scanf("%d", &i);
       carlu = getchar();
       while (carlu != '\n') {
         carlu = getchar();
-       }
-     }
+      }
+    }
     printf("Votre pivot est en l%d, c%d \n", i, j);
     i--;
     j--;
