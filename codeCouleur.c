@@ -100,7 +100,8 @@ void printGame(jeu nvjeu, int nbl, int nbc){
       else if(nvjeu.grille[i][j]==2){
         printf("| ");
         if (nvjeu.grille[i][j]==2){
-        printf("\033[¤ m");
+          printf("\033[¤ m");
+        }
        }
       else if(nvjeu.grille[i][j]==3){
         printf("| & ");
