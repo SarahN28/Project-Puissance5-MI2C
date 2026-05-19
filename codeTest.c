@@ -26,12 +26,11 @@ typedef struct {
 int constructJoueur (defJoueur joueur[3]){
   int n = 0;
   int j;
-  char k, carlu;
+  char carlu;
   do{
     printf("Veuillez choisir le mode du jeu ! \n");
     printf("  2 : 2 joueurs | 3 : 3 joueurs | pour sortir : tapez 99 \n");
     scanf("%d", &n);
-    scanf("%c", &k);
     carlu = getchar();                                       //verif que l'utilisateur n'a mis qu'un nombre
     while (carlu !='\n') {
       carlu = getchar();                                      //verif que l'utilisateur n'a mis qu'un nombre
