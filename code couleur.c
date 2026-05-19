@@ -99,12 +99,15 @@ void printGame(jeu nvjeu, int nbl, int nbc){
        }
       else if(nvjeu.grille[i][j]==2){
         printf("|");
-        if (tab[i][j]==2) {
-          printf("\033[32m%c \033[00m", tab[i][j]);
+        
           printf(" ¤ ");
        }
        }
       else if(nvjeu.grille[i][j]==3){
+        printf("|");
+        if (tab[i][j]==4) {
+          printf("\033[32m%c \033[00m", tab[i][j]);
+          printf(" & ");
         printf("| & ");
        }
       else if(nvjeu.grille[i][j]==4){
