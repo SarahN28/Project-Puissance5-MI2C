@@ -100,15 +100,15 @@ void printGame(jeu nvjeu, int nbl, int nbc){
        }
       else if(nvjeu.grille[i][j]==2){
         printf("| ");
-        printf("\033[94m¤ \033[00m\n");
+        printf("\033[94m¤ \033[00m");
        }
       else if(nvjeu.grille[i][j]==3){
         printf("| ");
-        printf("\033[95m& \033[00m\n");
+        printf("\033[95m& \033[00m");
        }
       else if(nvjeu.grille[i][j]==4){
         printf("| ");
-        printf("\033[92m¥ \033[00m\n");
+        printf("\033[92m¥ \033[00m");
        }
      }
     printf("| \n");
