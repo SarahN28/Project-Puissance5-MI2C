@@ -1,25 +1,26 @@
-int constructJoueur (defJoueur joueur[3]){
+int constructPlayer (Player pl[3]){
   int n = 0;
   int j;
-  char carlu;
+  char carlu, c1;
   do{
-    printf("Veuillez choisir le mode du jeu ! \n");
-    printf("  2 : 2 joueurs | 3 : 3 joueurs | pour sortir : tapez 99 \n");
-    scanf("%d", &n);
-    carlu = getchar();                                       //verif que l'utilisateur n'a mis qu'un nombre
-    while (carlu !='\n') {
+     printf("Veuillez choisir le mode du jeu ! \n");
+     printf("  2 : 2 joueurs | 3 : 3 joueurs |  Q : pour sortir \n");
+     scanf("%c", &c1);
+     carlu = c1;
+     while (carlu !='\n') {
       carlu = getchar();                                      //verif que l'utilisateur n'a mis qu'un nombre
      }
-    if (n!=2 && n!=3 && n!=99) {
+     if (c1!='2' && c1!='3' && c1!='q' && c1!='Q') {
        printf("Erreur : Le nombre de joueur est incorrect\n");                   //verif que le nombre donne est prenable
      }
-  } while (n!=2 && n!=3 && n!=99);
-  if (n==99) {
-   return (n);
-  }
+  } while (c1!='2' && c1!='3' && c1!='q' && c1!='Q');
+  if (c1=='q' || c1=='Q') {
+    return 99;
+   }
+  n = c1-'0';
   for(int i=0; i<n; i++) {
-   joueur[i].numJoueur = i+1;
-   joueur[i].aGagner = 0;
+   pl[i].numPlayer = i+1;
+   pl[i].Win = 0;
    carlu = ' ';
    j=0;
    do {
@@ -29,25 +30,25 @@ int constructJoueur (defJoueur joueur[3]){
      printf("Entrez le nom du joueur %d et tapez sur la touche Entrée \n", i+1);
      scanf("%c", &carlu);
    } while (carlu=='\n');
-   joueur[i].nomJoueur[j] = carlu;
+   pl[i].namePlayer[j] = carlu;
    j++;
    while (carlu !='\n') {
      scanf("%c", &carlu);
      if (j < 10 && carlu != '\n') {
-       joueur[i].nomJoueur[j] = carlu;
+       pl[i].namePlayer[j] = carlu;
        j++;
      }
    }
    while (j<10) {
-     joueur[i].nomJoueur[j] = ' ';
+     pl[i].namePlayer[j] = ' ';
      j++;
    }
-   joueur[i].nomJoueur[10] = '\0';
+   pl[i].namePlayer[10] = '\0';
   }
-  return (n);
+  return n;
  }
 
- void createPiste(int tab[NBLIG][NBCOL], int nbl, int nbc){
+ void createGrid(int tab[NBLIN][NBCOL], int nbl, int nbc){
   for (int i=0; i<nbl; i++){
     for(int j=0; j<nbc; j++) {
       tab[i][j] = 0;
@@ -59,29 +60,28 @@ int constructJoueur (defJoueur joueur[3]){
   tab[nbl-1][nbc-1]=1;                //carré sur L6 C8
 }
 
-void printGame(jeu nvjeu, int nbl, int nbc){
+void printGame(Game nwGame, int nbl, int nbc){
   int k;
   printf("-\n");
   printf("    1   2   3   4   5   6   7   8\n");
   for (int i=0; i<nbl; i++){ 
     printf ("%d ", i+1);
     for (int j=0; j<nbc; j++){
-      if(nvjeu.grille[i][j]==0){
+      if(nwGame.grid[i][j]==0){
         printf("|   ");
-        
        }
-      else if(nvjeu.grille[i][j]==1){
+      else if(nwGame.grid[i][j]==1){
         printf("|###");
        }
-      else if(nvjeu.grille[i][j]==2){
+      else if(nwGame.grid[i][j]==2){
         printf("| ");
         printf("\033[94m¤ \033[00m");
        }
-      else if(nvjeu.grille[i][j]==3){
+      else if(nwGame.grid[i][j]==3){
         printf("| ");
         printf("\033[95m& \033[00m");
        }
-      else if(nvjeu.grille[i][j]==4){
+      else if(nwGame.grid[i][j]==4){
         printf("| ");
         printf("\033[92m¥ \033[00m");
        }
@@ -95,7 +95,7 @@ void printGame(jeu nvjeu, int nbl, int nbc){
    }
  }
 
-int selectionpivot(){
+int sizePiv(){
   int piv;
   piv = rand()%2;
   if(piv==0){
@@ -109,7 +109,7 @@ return piv;
 }
 
 // saisie de la colonne ou 99 pour sortir du jeu
- int saisiecolonne() {
+ int selectCol() {
    int n=0;
    char carlu;
     do{
@@ -127,11 +127,11 @@ return piv;
     return (n-1);
   }
   else {
-    return (n);
+    return n;
   } 
  }
 
-int deplacement_bas(int tab[NBLIG][NBCOL], int nbJ, int numcol){                          // insert piece in column 'numcol'
+int fall(int tab[NBLIN][NBCOL], int nbJ, int numcol){                          // insert piece in column 'numcol'
   int i = 0;
   while (tab[i][numcol]==0 && i<6){
     i = i+1;                                                                // 2 if first player, 3 if second player, etc...
@@ -144,33 +144,33 @@ int deplacement_bas(int tab[NBLIG][NBCOL], int nbJ, int numcol){                
   return (i-1);
  }
 
-pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplacement et col = numcol = n de saisiecolonne
+pivot selectPiv(int n, int line, int col) {               // line = i-1 de deplacement et col = numcol = n de selectCol
   int i=0, j=0;
-  int ligmin, ligmax, colmin, colmax;
+  int lineMin, lineMax, colMin, colMax;
   pivot c;
   char carlu;
-  printf("Votre nouveau jeton est en l%d, c%d \n", lig+1, col+1);
-  ligmin = lig-n;
-  ligmax = lig+n;
-  colmin = col-n;
-  colmax = col+n;  
-  if ((ligmin-n) < 0) {
-    ligmin = n;
+  printf("Votre nouveau jeton est en l%d, c%d \n", line+1, col+1);
+  lineMin = line-n;
+  lineMax = line+n;
+  colMin = col-n;
+  colMax = col+n;  
+  if ((lineMin-n) < 0) {
+    lineMin = n;
    }
-  if ((ligmax+n) > 5 ) {
-    ligmax = 5 - n;
+  if ((lineMax+n) > (NBLIN-1) ) {
+    lineMax = (NBLIN-1) - n;
    }
-  if ((colmin-n) < 0) {
-    colmin = n;
+  if ((colMin-n) < 0) {
+    colMin = n;
    }
-  if ((colmax + n) > 7 ) {
-    colmax = 7-n;
+  if ((colMax + n) > (NBCOL-1) ) {
+    colMax = (NBCOL-1) - n;
   }
-  while (j<(colmin+1) || (j>(colmax+1) && j!=99)){                                         // la ligne affichée est à +1 de l'indice
-    if((j<(colmin+1) && j!=0) || (j>(colmax+1) && j!=99)) {
+  while (j<(colMin+1) || (j>(colMax+1) && j!=99)){                                         // la ligne affichée est à +1 de l'indice
+    if((j<(colMin+1) && j!=0) || (j>(colMax+1) && j!=99)) {
       printf("erreur de saisie : \n");
     }
-    printf("Choisir la colonne du pivot : comprise entre %d et %d ou 99 pour sortir du jeu\n", colmin+1, colmax+1);
+    printf("Choisir la colonne du pivot : comprise entre %d et %d ou 99 pour sortir du jeu\n", colMin+1, colMax+1);
     scanf("%d", &j);
     carlu = getchar();
     while (carlu != '\n') {
@@ -178,11 +178,11 @@ pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplac
     }
   }   
   if (j!=99) {
-    while (i<(ligmin+1) || i>(ligmax+1)) {
-      if((i<(ligmin+1) && i!=0) || (i>(ligmax+1))) {
-      printf("erreur de saisie : \n");
+    while (i<(lineMin+1) || i>(lineMax+1)) {
+      if((i<(lineMin+1) && i!=0) || (i>(lineMax+1))) {
+        printf("erreur de saisie : \n");
       }
-      printf("Choisir la ligne du pivot : comprise entre %d et %d \n", ligmin+1, ligmax+1);
+      printf("Choisir la ligne du pivot : comprise entre %d et %d \n", lineMin+1, lineMax+1);
       scanf("%d", &i);
       carlu = getchar();
       while (carlu != '\n') {
@@ -196,37 +196,37 @@ pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplac
   else {
     i = 99;
    } 
-  c.ligne = i;
-  c.colonne = j;
+  c.line = i;
+  c.col = j;
   return c;
  }
 
-int demanderRotation(){
-  int choix = 0;
+int askRotation(){
+  int select = 0;
   char carlu;
   carlu = ' ';
-  while(choix!=1 && choix !=2) {
-    if(choix!=1 && choix !=2 && choix !=0){
+  while(select!=1 && select!=2) {
+    if(select!=1 && select!=2 && select!=0){
       printf("erreur de saisie : \n");
     }
     printf("Choisir un sens de rotation :\n");
-    printf("     1 : Horaire  |  2 : Anti-Horaire\n");
-    scanf("%d", &choix);
+    printf("   1 : Horaire  |  2 : Anti-Horaire\n");
+    scanf("%d", &select);
     carlu = getchar();                                      // pour supprimer les caractères restants au cas où...
     while (carlu != '\n') {
       carlu = getchar();
      }
    }
-  if(choix == 1){
+  if(select == 1){
     printf(" Activation de la rotation Horaire\n");
    }
   else {
     printf(" Activation de la rotation Anti-Horaire\n");
    }
-  return choix;
+  return select;
  }
 
-void rotationHoraire(int tab[NBLIG][NBCOL], int n, pivot p) {
+void Clockwise(int tab[NBLIN][NBCOL], int n, pivot p) {
   int i, j, k, k2;
   int t[5][5];                                                                                             //definir en constante
   k2 = 0;
@@ -235,18 +235,18 @@ void rotationHoraire(int tab[NBLIG][NBCOL], int n, pivot p) {
       t[i][j] = 0;
     }
    }
-  for(i=(p.ligne+n); i>=(p.ligne-n); i--) {                          // remplissage table intermédiaire avec nouvelle valeur suite à rotation
+  for(i=(p.line+n); i>=(p.line-n); i--) {                          // remplissage table intermédiaire avec nouvelle valeur suite à rotation
     k = 0;
-    for(j=(p.colonne-n); j<=(p.colonne+n); j++) {
+    for(j=(p.col-n); j<=(p.col+n); j++) {
       t[k][k2] = tab[i][j];
       k++;
      }
     k2++;
    }
   k = 0; 
-  for(i=(p.ligne-n); i<=(p.ligne+n); i++) {
+  for(i=(p.line-n); i<=(p.line+n); i++) {
     k2 = 0;
-    for(j=(p.colonne-n); j<=(p.colonne+n); j++) {
+    for(j=(p.col-n); j<=(p.col+n); j++) {
       tab[i][j] = t[k][k2];
       k2++;
      }
@@ -254,7 +254,7 @@ void rotationHoraire(int tab[NBLIG][NBCOL], int n, pivot p) {
    }
 }
 
-void rotationAntiHoraire(int tab[NBLIG][NBCOL], int n, pivot p) {
+void counterClock(int tab[NBLIN][NBCOL], int n, pivot p) {
   int i,j,k, k2;
   int t[5][5];
   for (i=0; i<5; i++) {
@@ -263,18 +263,18 @@ void rotationAntiHoraire(int tab[NBLIG][NBCOL], int n, pivot p) {
      }
    }
   k2 = 2*n;                                                         // remplissage table intermédiaire avec nouvelle valeur
-  for(i=(p.ligne+n); i>=(p.ligne-n); i--) {
+  for(i=(p.line+n); i>=(p.line-n); i--) {
     k = 2*n;
-    for(j=(p.colonne-n); j<=(p.colonne+n); j++) {
+    for(j=(p.col-n); j<=(p.col+n); j++) {
       t[k][k2] = tab[i][j];
       k--;
      }
     k2--;
    }
-  k = 0;                                            // nouvelles valeur à mettre dans la grille : substitution par celle de t renseignée
-  for(i=(p.ligne-n); i<=(p.ligne+n); i++) {
+  k = 0;                                            // nouvelles valeur à mettre dans la grid : substitution par celle de t renseignée
+  for(i=(p.line-n); i<=(p.line+n); i++) {
     k2 = 0;
-    for(j=(p.colonne-n); j<=(p.colonne+n); j++) {
+    for(j=(p.col-n); j<=(p.col+n); j++) {
       tab[i][j] = t[k][k2];
       k2++;
      }
@@ -282,16 +282,16 @@ void rotationAntiHoraire(int tab[NBLIG][NBCOL], int n, pivot p) {
    }
 }
 
-void gravitePivot(int tab[NBLIG][NBCOL], pivot pi, int nbc) {
-  int t[NBCOL];
+void gravityPivot(int tab[NBLIN][NBCOL], pivot pi, int nbc) {
+  int t[NBLIN];
   int k;
   int i, j ;
-  for(j=(pi.colonne-nbc); j<=(pi.colonne+nbc); j++){
-    for(k=0; k<=5; k++) {
+  for(j=(pi.col-nbc); j<=(pi.col+nbc); j++){
+    for(k=0; k<NBLIN; k++) {
       t[k] = 0;
      }
     k = 5;
-    for(i=5; i>=0; i--) {
+    for(i=(NBLIN-1); i>=0; i--) {
       if (tab[i][j] != 0 && tab[i][j] != 1) {
         t[k] = tab[i][j];
         k--;
@@ -301,72 +301,72 @@ void gravitePivot(int tab[NBLIG][NBCOL], pivot pi, int nbc) {
         k = i-1;
        }
      }
-    for(i=0; i<=5; i++) {
+    for(i=0; i<NBLIN; i++) {
       tab[i][j]=t[i];
      }
    }
 }
 
 // fin = 1 : non terminée, fin = 0 : joueur(s) gagnant(s), fin = 2 : Partie Nulle
-int finJeu(int tab[NBLIG][NBCOL], defJoueur resJ[3]) {
+int endGame(int tab[NBLIN][NBCOL], Player resP[3]) {
   int i, j, k;
-  int fin = 1;
-  for (i=0; i<NBLIG; i++) {                                                                         // verif gagnant en ligne
+  int end = 1;
+  for (i=0; i<NBLIN; i++) {                                                                         // verif gagnant en ligne
     for(j=0; j<=NBCOL-5; j++) {
       if (tab[i][j]==tab[i][j+1] && tab[i][j]==tab[i][j+2] && tab[i][j]==tab[i][j+3] && tab[i][j]==tab[i][j+4] && tab[i][j] != 0) {
         k = tab[i][j] - 2;
-        resJ[k].aGagner = 1;
+        resP[k].Win = 1;
         printf("Gagnant en ligne %d \n", i+1);
-        fin = 0;
+        end = 0;
        }
      }
    }
   for (j=0; j<NBCOL; j++) {                                                                        // vérif gagnant en colonne : NON Testée
-    for(i=0; i<=NBLIG-5; i++) {
+    for(i=0; i<=NBLIN-5; i++) {
       if (tab[i][j]==tab[i+1][j] && tab[i][j]==tab[i+2][j] && tab[i][j]==tab[i+3][j] && tab[i][j]==tab[i+4][j]  && tab[i][j] != 0) {
         k = tab[i][j] - 2;
-        resJ[k].aGagner = 1;
+        resP[k].Win = 1;
         printf("Gagnant en colonne %d \n", j+1);
-        fin = 0;
+        end = 0;
        }
      }
    }
-  for(i=4; i<6; i++) {                                                                            // verif gagnant en diagonale /
-    for(j=0; j<4; j++) {
-      if (tab[i][j]==tab[i-1][j+1] && tab[i][j]==tab[i-2][j+2] && tab[i][j]==tab[i-3][j+3] && tab[i][j]==tab[i-4][j+4] && tab[i][j]!=0){
-        k=tab[i][j] - 2;
-        resJ[k].aGagner = 1;
+  for(i=0; i<=(NBLIN-5); i++) {                                                                            // verif gagnant en diagonale /
+    for(j=(NBCOL-1); j>=(NBCOL-5); j--) {
+      if (tab[i][j]==tab[i+1][j-1] && tab[i][j]==tab[i+2][j-2] && tab[i][j]==tab[i+3][j-3] && tab[i][j]==tab[i+4][j-4] && tab[i][j]!=0){
+        k = tab[i][j] - 2;
+        resP[k].Win = 1;
         printf("Gagnant en diagnonale %d \n", i+1);
-        fin = 0;
+        end = 0;
        }
      }
    }
-  for(i=4; i<6; i++) {                                                                    // verif gagnant en diagonale inversée
-    for(j=4; j<8; j++) {
-      if (tab[i][j]==tab[i-1][j-1] && tab[i][j]==tab[i-2][j-2] && tab[i][j]==tab[i-3][j-3] && tab[i][j]==tab[i-4][j-4] && tab[i][j]!=0){
-        k=tab[i][j] - 2;
-        resJ[k].aGagner = 1;
+  for(i=0; i<=(NBLIN-5); i++) {                                                                    // verif gagnant en diagonale inversée
+    for(j=0; j<=NBCOL-5; j++) {
+      if (tab[i][j]==tab[i+1][j+1] && tab[i][j]==tab[i+2][j+2] && tab[i][j]==tab[i+3][j+3] && tab[i][j]==tab[i+4][j+4] && tab[i][j]!=0){
+        k = tab[i][j] - 2;
+        resP[k].Win = 1;
         printf("Gagnant en diagonale inversée %d \n", i+1);
-        fin = 0;
+        end = 0;
        }
      }
    }
-  if (fin==1) {                                                                         // verif si partie NULLE
-    fin = 2;
+  if (end==1) {                                                                         // verif si partie NULLE
+    end = 2;
     for(j=0; j<NBCOL; j++) {
-      if(tab[0][j] ==0) {
-        fin = 1;
+      if(tab[0][j]==0) {
+        end = 1;
        }
      }
    }
-  return fin;
+  return end;
 }
 
-int sauvJeux(jeu sjeu, FILE *fic){
+int sauvJeux(Game sgame, FILE *fic){
   int save = 0;
   fic = fopen("SauvP5.txt", "wb+") ;
   if (fic!=NULL) {
-    save = fwrite(&sjeu, sizeof(jeu), 1, fic);
+    save = fwrite(&sgame, sizeof(Game), 1, fic);
     save = fclose(fic);
    }
  }
