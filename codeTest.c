@@ -28,9 +28,11 @@ int constructJoueur (defJoueur joueur[3]){
   int j;
   char carlu;
   do{
-     printf("Veuillez choisir le mode du jeu ! \n");
-     printf("  2 : 2 joueurs | 3 : 3 joueurs | pour sortir : tapez 99 \n");
-     scanf("%d", &n);
+     do {
+       printf("Veuillez choisir le mode du jeu ! \n");
+       printf("  2 : 2 joueurs | 3 : 3 joueurs | pour sortir : tapez 99 \n");
+       scanf("%d", &n);
+      } while (n == 0);
      carlu = getchar();                                       //verif que l'utilisateur n'a mis qu'un nombre
      while (carlu !='\n') {
       carlu = getchar();                                      //verif que l'utilisateur n'a mis qu'un nombre
