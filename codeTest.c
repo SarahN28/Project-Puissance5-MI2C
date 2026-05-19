@@ -93,18 +93,22 @@ void printGame(jeu nvjeu, int nbl, int nbc){
     for (int j=0; j<nbc; j++){
       if(nvjeu.grille[i][j]==0){
         printf("|   ");
+        
        }
       else if(nvjeu.grille[i][j]==1){
         printf("|###");
        }
       else if(nvjeu.grille[i][j]==2){
-        printf("| ¤ ");
+        printf("| ");
+        printf("\033[94m¤ \033[00m\n");
        }
       else if(nvjeu.grille[i][j]==3){
-        printf("| & ");
+        printf("| ");
+        printf("\033[95m& \033[00m\n");
        }
       else if(nvjeu.grille[i][j]==4){
-        printf("| ¥ ");
+        printf("| ");
+        printf("\033[92m¥ \033[00m\n");
        }
      }
     printf("| \n");
