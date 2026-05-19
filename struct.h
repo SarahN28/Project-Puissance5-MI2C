@@ -1,18 +1,18 @@
 typedef struct {
-  int ligne;
-  int colonne;
+  int line;
+  int col;
 } pivot;
 
 typedef struct {
-  int numJoueur;
-  char nomJoueur[11];
-  int aGagner;
-} defJoueur;
+  int numPlayer;
+  char namePlayer[11];
+  int Win;
+} Player;
 
 // les données du jeu : sont mises dans une structure pour pourvoir sauvegarder dans un fichier binaire, et les récupérer facilement
 typedef struct {
-  int nbJoueur;
-  int numeroJoueur;                           //prochain joueur à jouer
-  defJoueur jo[3];
-  int grille[6][8];
-} jeu;
+  int nbPlayer;
+  int noPlayer;                           //prochain joueur à jouer
+  Player pl[3];
+  int grid[NBLIN][NBCOL];
+} Game;
