@@ -27,8 +27,11 @@ Ce projet consiste à créer un jeu
 
 
 ## Structure
-
-
+ - **`bibli.h`** : contient tous les biblithèques utilisées
+ - **`main.c`**
+ - **`const.h`**
+ - **`struct.h`**
+ - **`fonctions.h`**
 
 
 
