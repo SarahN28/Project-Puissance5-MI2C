@@ -94,7 +94,6 @@ void printGame(jeu nvjeu, int nbl, int nbc){
     for (int j=0; j<nbc; j++){
       if(nvjeu.grille[i][j]==0){
         printf("|   ");
-        
        }
       else if(nvjeu.grille[i][j]==1){
         printf("|###");
@@ -153,7 +152,7 @@ return piv;
     return (n-1);
   }
   else {
-    return (n);
+    return n;
   } 
  }
 
@@ -183,14 +182,14 @@ pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplac
   if ((ligmin-n) < 0) {
     ligmin = n;
    }
-  if ((ligmax+n) > 5 ) {
-    ligmax = 5 - n;
+  if ((ligmax+n) > (NBLIG-1) ) {
+    ligmax = (NBLIG-1) - n;
    }
   if ((colmin-n) < 0) {
     colmin = n;
    }
-  if ((colmax + n) > 7 ) {
-    colmax = 7-n;
+  if ((colmax + n) > (NBCOL-1) ) {
+    colmax = (NBCOL-1) - n;
   }
   while (j<(colmin+1) || (j>(colmax+1) && j!=99)){                                         // la ligne affichée est à +1 de l'indice
     if((j<(colmin+1) && j!=0) || (j>(colmax+1) && j!=99)) {
@@ -206,7 +205,7 @@ pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplac
   if (j!=99) {
     while (i<(ligmin+1) || i>(ligmax+1)) {
       if((i<(ligmin+1) && i!=0) || (i>(ligmax+1))) {
-      printf("erreur de saisie : \n");
+        printf("erreur de saisie : \n");
       }
       printf("Choisir la ligne du pivot : comprise entre %d et %d \n", ligmin+1, ligmax+1);
       scanf("%d", &i);
@@ -228,28 +227,28 @@ pivot choixPivot(int n, int lig, int col) {               // lig = i-1 de deplac
  }
 
 int demanderRotation(){
-  int choix = 0;
+  int select = 0;
   char carlu;
   carlu = ' ';
-  while(choix!=1 && choix !=2) {
-    if(choix!=1 && choix !=2 && choix !=0){
+  while(select!=1 && select!=2) {
+    if(select!=1 && select!=2 && select!=0){
       printf("erreur de saisie : \n");
     }
     printf("Choisir un sens de rotation :\n");
-    printf("     1 : Horaire  |  2 : Anti-Horaire\n");
-    scanf("%d", &choix);
+    printf("   1 : Horaire  |  2 : Anti-Horaire\n");
+    scanf("%d", &select);
     carlu = getchar();                                      // pour supprimer les caractères restants au cas où...
     while (carlu != '\n') {
       carlu = getchar();
      }
    }
-  if(choix == 1){
+  if(select == 1){
     printf(" Activation de la rotation Horaire\n");
    }
   else {
     printf(" Activation de la rotation Anti-Horaire\n");
    }
-  return choix;
+  return select;
  }
 
 void rotationHoraire(int tab[NBLIG][NBCOL], int n, pivot p) {
@@ -309,15 +308,15 @@ void rotationAntiHoraire(int tab[NBLIG][NBCOL], int n, pivot p) {
 }
 
 void gravitePivot(int tab[NBLIG][NBCOL], pivot pi, int nbc) {
-  int t[NBCOL];
+  int t[NBLIG];
   int k;
   int i, j ;
   for(j=(pi.colonne-nbc); j<=(pi.colonne+nbc); j++){
-    for(k=0; k<=5; k++) {
+    for(k=0; k<NBLIG; k++) {
       t[k] = 0;
      }
     k = 5;
-    for(i=5; i>=0; i--) {
+    for(i=(NBLIG-1); i>=0; i--) {
       if (tab[i][j] != 0 && tab[i][j] != 1) {
         t[k] = tab[i][j];
         k--;
@@ -327,7 +326,7 @@ void gravitePivot(int tab[NBLIG][NBCOL], pivot pi, int nbc) {
         k = i-1;
        }
      }
-    for(i=0; i<=5; i++) {
+    for(i=0; i<NBLIG; i++) {
       tab[i][j]=t[i];
      }
    }
@@ -336,14 +335,14 @@ void gravitePivot(int tab[NBLIG][NBCOL], pivot pi, int nbc) {
 // fin = 1 : non terminée, fin = 0 : joueur(s) gagnant(s), fin = 2 : Partie Nulle
 int finJeu(int tab[NBLIG][NBCOL], defJoueur resJ[3]) {
   int i, j, k;
-  int fin = 1;
+  int end = 1;
   for (i=0; i<NBLIG; i++) {                                                                         // verif gagnant en ligne
     for(j=0; j<=NBCOL-5; j++) {
       if (tab[i][j]==tab[i][j+1] && tab[i][j]==tab[i][j+2] && tab[i][j]==tab[i][j+3] && tab[i][j]==tab[i][j+4] && tab[i][j] != 0) {
         k = tab[i][j] - 2;
         resJ[k].aGagner = 1;
         printf("Gagnant en ligne %d \n", i+1);
-        fin = 0;
+        end = 0;
        }
      }
    }
@@ -353,39 +352,39 @@ int finJeu(int tab[NBLIG][NBCOL], defJoueur resJ[3]) {
         k = tab[i][j] - 2;
         resJ[k].aGagner = 1;
         printf("Gagnant en colonne %d \n", j+1);
-        fin = 0;
+        end = 0;
        }
      }
    }
-  for(i=4; i<6; i++) {                                                                            // verif gagnant en diagonale /
-    for(j=0; j<4; j++) {
-      if (tab[i][j]==tab[i-1][j+1] && tab[i][j]==tab[i-2][j+2] && tab[i][j]==tab[i-3][j+3] && tab[i][j]==tab[i-4][j+4] && tab[i][j]!=0){
-        k=tab[i][j] - 2;
+  for(i=0; i<=(NBLIG-5); i++) {                                                                            // verif gagnant en diagonale /
+    for(j=(NBCOL-1); j>=(NBCOL-5); j--) {
+      if (tab[i][j]==tab[i+1][j-1] && tab[i][j]==tab[i+2][j-2] && tab[i][j]==tab[i+3][j-3] && tab[i][j]==tab[i+4][j-4] && tab[i][j]!=0){
+        k = tab[i][j] - 2;
         resJ[k].aGagner = 1;
         printf("Gagnant en diagnonale %d \n", i+1);
-        fin = 0;
+        end = 0;
        }
      }
    }
-  for(i=4; i<6; i++) {                                                                    // verif gagnant en diagonale inversée
-    for(j=4; j<8; j++) {
-      if (tab[i][j]==tab[i-1][j-1] && tab[i][j]==tab[i-2][j-2] && tab[i][j]==tab[i-3][j-3] && tab[i][j]==tab[i-4][j-4] && tab[i][j]!=0){
-        k=tab[i][j] - 2;
+  for(i=0; i<=(NBLIG-5); i++) {                                                                    // verif gagnant en diagonale inversée
+    for(j=0; j<=NBCOL-5; j++) {
+      if (tab[i][j]==tab[i+1][j+1] && tab[i][j]==tab[i+2][j+2] && tab[i][j]==tab[i+3][j+3] && tab[i][j]==tab[i+4][j+4] && tab[i][j]!=0){
+        k = tab[i][j] - 2;
         resJ[k].aGagner = 1;
         printf("Gagnant en diagonale inversée %d \n", i+1);
-        fin = 0;
+        end = 0;
        }
      }
    }
-  if (fin==1) {                                                                         // verif si partie NULLE
-    fin = 2;
+  if (end==1) {                                                                         // verif si partie NULLE
+    end = 2;
     for(j=0; j<NBCOL; j++) {
-      if(tab[0][j] ==0) {
-        fin = 1;
+      if(tab[0][j]==0) {
+        end = 1;
        }
      }
    }
-  return fin;
+  return end;
 }
 
 int sauvJeux(jeu sjeu, FILE *fic){
@@ -406,17 +405,18 @@ int main () {
  int retF = 0;
  char carlu;
  char reprise = ' ';
+ char topinit = '0';
  pivot piv;
  jeu nvJeu;
  FILE *f = NULL;
  srand(time(NULL));
    
- f=fopen("SauvP5.txt", "rb") ;
+ f = fopen("SauvP5.txt", "rb") ;
  if(f!= NULL) {                                                                                                      // verification si sauvegarde du jeu existe
   while(reprise != 'o' && reprise != 'O' && reprise != 'n' && reprise != 'N') {
     do {
       if (reprise == '\n'){
-        printf("erreur 2 de saisie\n");
+        printf("erreur de saisie 2\n");
       }
       printf("Voulez vous reprendre l'ancienne partie ? O pour Oui, N pour Non \n");
       scanf("%c", &reprise);
@@ -424,17 +424,21 @@ int main () {
     carlu = getchar();
     while (carlu != '\n') {
       carlu = getchar();
-    }
-  }
-}
-if (reprise=='o' || reprise == 'O') {                                                                    // initialisation jeu avec sauvegarde
-  retF = fread(&nvJeu, sizeof(jeu), 1, f);
-  if (retF!=1) {
-    printf("Dernier jeux introuvable, vous allez commencer une nouvelle partie \n");
-  }
-}
-// initialisation du jeu si non récupérer du fichier de sauvegarde
-if (retF != 1) {
+     }
+   }
+  if (reprise=='o' || reprise == 'O') {                                                                    // initialisation jeu avec sauvegarde
+    retF = fread(&nvJeu, sizeof(jeu), 1, f);
+    if (retF!=1) {
+      printf("Dernier jeu introuvable, vous allez commencer une nouvelle partie \n");
+     }
+    else{
+      topinit = '1';
+     }
+   }
+  retF = fclose(f);
+  retF = remove("SauvP5.txt");
+ }
+if (topinit != '1') {
   nvJeu.nbJoueur=constructJoueur(nvJeu.jo);
   if (nvJeu.nbJoueur == 99) {
     return 0;
@@ -442,10 +446,7 @@ if (retF != 1) {
   createPiste(nvJeu.grille, NBLIG, NBCOL);
   nvJeu.numeroJoueur = 0; 
 }
-if(f!= NULL) {                                                                                         // suppression du fichier de sauvegarde
- retF = fclose(f);
- retF = remove("SauvP5.txt");
-}
+
 printGame(nvJeu, NBLIG, NBCOL);
 while(finpartie == 1) {                                                                                  // a faire tant que partie non terminée
   printf("Au tour du joueur %s \n", nvJeu.jo[nvJeu.numeroJoueur].nomJoueur);
@@ -453,12 +454,10 @@ while(finpartie == 1) {                                                         
    // calcul largeur carré à pivoter
   nbpivot = selectionpivot();
   nbcase = nbpivot/2;
-  
-  //insertion du jeton du nv joueur
-  while(nvlig==-1) {
+  while(nvlig==-1) {                                                                                       //insertion du jeton du nv joueur
     // demander la colonne où insérer le jeton ou 99 pour sortir
     numerocol = saisiecolonne(nvJeu.numeroJoueur); 
-    if (numerocol ==99) {
+    if (numerocol == 99) {
       finpartie = 2;
       reprise = ' ';
       do {
@@ -485,7 +484,7 @@ while(finpartie == 1) {                                                         
     finpartie = 2;
     return 0;
    }
-  if (demanderRotation() ==1 ) {                                                            // demande du type de rotation
+  if (demanderRotation()==1 ) {                                                            // demande du type de rotation
    rotationHoraire(nvJeu.grille, nbcase, piv);
    }
   else {
