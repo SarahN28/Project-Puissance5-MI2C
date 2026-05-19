@@ -507,7 +507,7 @@ if (endMatch == 2) {                                                            
  else {
    for (int i=0; i<3; i++) {
      if (nwGame.pl[i].Win == 1) {
-       printf("BRAVO au joueur %s, vous avez gagné\n", nwGame.jl[i].namePlayer);
+       printf("BRAVO au joueur %s, vous avez gagné\n", nwGame.pl[i].namePlayer);
       }
     }
   }
