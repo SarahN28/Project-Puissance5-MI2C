@@ -1,14 +1,14 @@
-EXEC = CYFighter
+EXEC = CYConnect
 
 #Sources à compiler
-SRC = 
+SRC = Main.c
 
 #Règle par défaut : compile et execute
 all: $(EXEC)
      ./$(EXEC)
 
 #Compilation du programme
-$(EXEC): $(SRC) fichier.h affichage.h couleurs.h
+$(EXEC): $(SRC) Fonctions.h bibli.h const.h struct.h
   gcc -Wall -o $(EXEC) $(SRC)
 
 #Nettoyage des fichiers compilés
