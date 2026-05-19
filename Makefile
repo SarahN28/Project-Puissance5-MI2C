@@ -5,7 +5,6 @@ SRC = Main.c
 
 #Règle par défaut : compile et execute
 all: $(EXEC)
-     ./$(EXEC)
 
 #Compilation du programme
 $(EXEC): $(SRC) Fonctions.h bibli.h const.h struct.h
