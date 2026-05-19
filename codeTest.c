@@ -158,6 +158,7 @@ int deplacement_bas(int tab[NBLIG][NBCOL], int nbJ, int numcol){                
     i = i+1;                                                                // 2 if first player, 3 if second player, etc...
    }
   if (i==0) {
+    printf(" ERREUR ! Insertion impossible\n");
     return (-1);          // insertion impossible, column full
   } 
   tab[i-1][numcol] = nbJ;               //nbJ : number of player
