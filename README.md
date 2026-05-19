@@ -31,7 +31,7 @@ Ce projet consiste à créer un jeu
  - **`main.c`**
  - **`const.h`**
  - **`struct.h`**
- - **`fonctions.h`**
+ - **`fonctions.h`** :
 
 
 
