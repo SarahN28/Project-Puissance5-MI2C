@@ -1,8 +1,0 @@
-int createPiste(){
-  int tab[6][8]={0};
-  tab[0][0]=4;                //carré sur L1 C1
-  tab[0][7]=4;                //carré sur L1 C8
-  tab[5][0]=4;                //carré sur L6 C1
-  tab[5][7]=4;                //carré sur L6 C8
-  return tab;
-}
