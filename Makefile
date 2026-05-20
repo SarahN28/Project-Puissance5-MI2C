@@ -1,15 +1,35 @@
-EXEC = CYConnect
+# ============================================================
+#  Makefile — Puissance5
+#  Compilation de tous les modules du projet
+# ============================================================
 
-#Sources à compiler
-SRC = Main.c
+CC      = gcc
+CFLAGS  = -Wall -Wextra -std=c11 -Iinclude
+TARGET  = Puissance5
 
-#Règle par défaut : compile et execute
-all: $(EXEC)
+# Fichiers sources et objets
+SRCS    = p5main.c \
+          p5function.c 
 
-#Compilation du programme
-$(EXEC): $(SRC) Fonctions.h bibli.h const.h struct.h
-  gcc -Wall -o $(EXEC) $(SRC)
+OBJS    = $(SRCS:.c=.o)
 
-#Nettoyage des fichiers compilés
+# ---- Règle principale ----------------------------------------
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^
+
+# ---- Compilation de chaque .c en .o --------------------------
+src/%.o: src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# ---- Nettoyage -----------------------------------------------
 clean:
-  rm -f $(EXEC)
+	rm -f src/*.o
+
+fclean: clean
+	rm -f $(TARGET)
+
+re: fclean all
+
+.PHONY: all clean fclean re
