@@ -62,8 +62,8 @@ La partie se termine :
 ## Structure
  - **`p5types.h`** : définit les constantes et structures ( Player, Game , pivot)
  - **`p5main.c`** : contient la fonction main()
- - **`pfunction.c`** : contient toutes les fonctions du jeu
- - **`pfunction.h`** : contient les prototypes des fonctions
+ - **`p5function.c`** : contient toutes les fonctions du jeu
+ - **`p5function.h`** : contient les prototypes des fonctions
  - **`Makefile`** : permet de compiler automatiquement
 
 
@@ -73,7 +73,7 @@ La partie se termine :
 
 Pour compiler et exécuter le projet, il faut :
 - un compilateur C (GCC) ;
-- Make
+- Make ;
 
 ### Compilation
 
@@ -114,7 +114,7 @@ Après la compilation, exécuter le programme avec :
 - une zone du plateau est pivotée ;
 - le programme vérifie les conditions de victoire.
 
-###Commandes disponibles
+### Commandes disponibles
 
 - 2 : partie à 2 joueurs ;
 - 3 : partie à 3 joueurs ;
