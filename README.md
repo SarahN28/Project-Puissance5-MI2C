@@ -19,6 +19,22 @@ Le jeu se joue sur une grille de **6 lignes et 8 colonnes** et peut accueillir *
 ## Règles du jeu
 Le jeu se déroule sur une grille de **6 lignes et 8 colonnes**.  
 Chaque joueur joue à tour de rôle.
+
+### Conditions de victoire
+Un joueur gagne lorsqu’il aligne **5 jetons identiques** :
+- horizontalement ;
+- verticalement ;
+- diagonalement.
+
+Il est possible que plusieurs joueurs gagnent en même temps.
+
+### Cases spéciales
+
+Les quatre coins de la grille contiennent des blocs indestructibles représentés par `###` :
+- ils ne tombent pas ;
+- ils bloquent les jetons ;
+- ils peuvent être déplacés lors des rotations.
+
 ### Déroulement d’un tour
 1. Une taille de zone de rotation est choisie aléatoirement :
    - soit **3×3** ;
@@ -37,22 +53,6 @@ Chaque joueur joue à tour de rôle.
 6. La zone sélectionnée pivote de **90°**.
 
 7. Après la rotation, la gravité est appliquée une nouvelle fois aux jetons présents dans la zone pivotée.
-
-### Conditions de victoire
-Un joueur gagne lorsqu’il aligne **5 jetons identiques** :
-- horizontalement ;
-- verticalement ;
-- diagonalement.
-
-Il est possible que plusieurs joueurs gagnent en même temps.
-
-### Cases spéciales
-
-Les quatre coins de la grille contiennent des blocs indestructibles représentés par `###` :
-- ils ne tombent pas ;
-- ils bloquent les jetons ;
-- ils peuvent être déplacés lors des rotations.
-
 ### Fin de partie
 
 La partie se termine :
