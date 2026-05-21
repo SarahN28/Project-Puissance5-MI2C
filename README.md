@@ -107,13 +107,6 @@ Après la compilation, exécuter le programme avec :
 - commencer une nouvelle partie ;
 - reprendre une sauvegarde existante.
 
-### Pendant la partie :
-
-- les joueurs jouent chacun leur tour ;
-- un jeton est inséré dans une colonne ;
-- une zone du plateau est pivotée ;
-- le programme vérifie les conditions de victoire.
-
 ### Commandes disponibles
 
 - 2 : partie à 2 joueurs ;
