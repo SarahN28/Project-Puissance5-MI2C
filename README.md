@@ -95,13 +95,31 @@ make re
 ```
 
 ## Utilisation
+### Lancer le jeu
 
+Après la compilation, exécuter le programme avec :
 
+```bash
+./Puissance5
+```
+### Au lancement, le joueur peut :
 
+- commencer une nouvelle partie ;
+- reprendre une sauvegarde existante.
 
+### Pendant la partie :
 
+- les joueurs jouent chacun leur tour ;
+- un jeton est inséré dans une colonne ;
+- une zone du plateau est pivotée ;
+- le programme vérifie les conditions de victoire.
 
+###Commandes disponibles
 
+- 2 : partie à 2 joueurs ;
+- 3 : partie à 3 joueurs ;
+- Q : quitter le programme ;
+- 99 : quitter la partie avec sauvegarde possible.
 
 ## Auteurs   
 - **Sarah NGO** - SarahN28  
