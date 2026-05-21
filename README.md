@@ -69,12 +69,30 @@ La partie se termine :
 
 ## Installation
 
+### Prérequis
 
+Pour compiler et exécuter le projet, il faut :
+- un compilateur C (GCC) ;
+- Make
 
+### Compilation
 
-
-
-
+Ouvrir un terminal dans le dossier du projet puis exécuter :
+```bash
+make
+```
+Nettoyage : 
+```bash
+make clean
+```
+Supprimer l’exécutable du projet :
+```bash
+make fclean
+```
+Nettoyer puis recompiler entièrement le projet :
+```bash
+make re
+```
 
 ## Utilisation
 
