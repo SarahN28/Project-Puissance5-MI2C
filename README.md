@@ -15,7 +15,6 @@
 Ce projet consiste à créer un jeu en langage C inspiré du Puissance 4, nommé **CY Connect**. 
 Le jeu se joue sur une grille de **6 lignes et 8 colonnes** et peut accueillir **2 ou 3 joueurs**. L’objectif est d’aligner **5 jetons identiques** horizontalement, verticalement ou en diagonale afin de remporter la partie.
 
-
 ## Règles du jeu
 Le jeu se déroule sur une grille de **6 lignes et 8 colonnes**.  
 Chaque joueur joue à tour de rôle.
@@ -29,35 +28,37 @@ Un joueur gagne lorsqu’il aligne **5 jetons identiques** :
 Il est possible que plusieurs joueurs gagnent en même temps.
 
 ### Cases spéciales
+Au début de la partie, quatre blocs sont placés au coin de la grille. Ces cases sont indestructibles et sont représentés par ###. De plus : 
 
-Les quatre coins de la grille contiennent des blocs indestructibles représentés par `###` :
-- ils ne tombent pas ;
-- ils bloquent les jetons ;
-- ils peuvent être déplacés lors des rotations.
+- Elles ne sont pas soumises à la gravité ; 
+- Elles empêchent les pièces d’accéder aux cases inférieures ; 
+- Elles peuvent cependant être déplacées lors des rotations. 
+
+### Mécanisme spécial : 
+Tout au long du jeu, après que le joueur a placé sa pièce, un mécanisme de rotation est activé. 
+
+- La taille de la zone a tourné est annoncé avant le tour d’un joueur. Elle varie entre un carré de 3x3 cases et un carré de 5x5 cases. 
+- Après avoir posé sa pièce, le joueur choisi un pivot qui agira comme centre du carré de rotation ainsi qu’un sens de rotation (horaire ou anti-horaire). 
+ATTENTION : La pièce qui vient d’être posé doit faire partie du carré. 
+- Par la suite, la zone choisie subit la rotation et les pièces concernées retombent par la gravité. 
 
 ### Déroulement d’un tour
-1. Une taille de zone de rotation est choisie aléatoirement :
-   - soit **3×3** ;
-   - soit **5×5**.
+1. La taille de la zone de rotation est annoncée. 
+2. Le joueur choisit une colonne pour insérer son jeton. 
+3. Le jeton tombe automatiquement sous l’effet de la gravité jusqu’à atteindre une position libre. 
+4. Le joueur choisi ensuite un pivot et un sens de rotation. 
+5. La zone sélectionnée pivote de 90° dans le sens choisi. 
+6. Après cela, la gravité est appliquée une nouvelle fois aux jetons présents dans la zone pivotée. 
+7. Fin de tour : 
+   - S'il y a un gagnant, la fin de jeu est annoncée. 
+   - Sinon, c’est au tour du joueur suivant. 
 
-2. Le joueur choisit une colonne pour insérer son jeton.
-
-3. Le jeton tombe automatiquement sous l’effet de la gravité jusqu’à atteindre une position libre.
-
-4. Le joueur doit ensuite choisir un pivot situé dans une zone contenant le jeton qu’il vient d’insérer.
-
-5. Le joueur choisit le sens de rotation :
-   - horaire ;
-   - anti-horaire.
-
-6. La zone sélectionnée pivote de **90°**.
-
-7. Après la rotation, la gravité est appliquée une nouvelle fois aux jetons présents dans la zone pivotée.
 ### Fin de partie
 
-La partie se termine :
-- lorsqu’un joueur réussit un alignement de 5 jetons ;
-- ou lorsque la grille est entièrement remplie.
+La partie se termine : 
+   - Lorsqu’un joueur réussit un alignement de 5 jetons ; 
+   - Ou, lorsqu’il n’est plus possible de jouer : 
+      - La grille est entièrement remplie. 
 
 ## Structure
  - **`p5types.h`** : définit les constantes et structures ( Player, Game , pivot)
