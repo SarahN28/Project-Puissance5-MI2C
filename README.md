@@ -59,7 +59,7 @@ La partie se termine :
    - Lorsqu’un joueur réussit un alignement de 5 jetons ; 
    - Ou, lorsqu’il n’est plus possible de jouer : 
       - La grille est entièrement remplie.
-      - Lorsque la première ligne est entièrement remplie.
+      - La première ligne est entièrement remplie.
 
 ## Structure
  - **`p5types.h`** : définit les constantes et structures ( Player, Game , pivot)
